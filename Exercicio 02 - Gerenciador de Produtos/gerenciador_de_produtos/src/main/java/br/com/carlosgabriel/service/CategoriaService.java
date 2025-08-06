@@ -15,6 +15,7 @@ public class CategoriaService {
             throw new CategoriaException("Nome da Categoria deve estar preenchido.");
         }
 
+        System.out.println("\nCategoria adicionada com sucesso.");
         categoriaDAO.save(categoria);
     }
 
@@ -47,6 +48,7 @@ public class CategoriaService {
             throw new CategoriaException("Nome da Categoria deve estar preenchido.");
         }
 
+        System.out.println("\nCategoria atualizada com sucesso.");
         categoriaDAO.update(categoria);
     }
 
@@ -61,6 +63,7 @@ public class CategoriaService {
             throw new CategoriaException("Valor de Id incorreto ou inexistente.");
         }
 
+        System.out.println("\nCategoria deletada com sucesso.");
         categoriaDAO.delete(id);
     }
 
