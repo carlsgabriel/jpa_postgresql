@@ -12,7 +12,7 @@ public class CategoriaService {
 
     public void save(Categoria categoria) {
         if (categoria.getNome() == null || categoria.getNome().isBlank()) {
-            throw new CategoriaException("Nome da Categoria deve estar preenchido.");
+            throw new CategoriaException("\nNome da Categoria deve estar preenchido.");
         }
 
         System.out.println("\nCategoria adicionada com sucesso.");
@@ -21,13 +21,13 @@ public class CategoriaService {
 
     public Categoria findById(Long id) {
         if (id <= 0) {
-            throw new CategoriaException("Valor de Id inválido.");
+            throw new CategoriaException("\nValor de Id inválido.");
         }
 
         Categoria categoria = categoriaDAO.findById(id);
 
         if (categoria == null) {
-            throw new CategoriaException("Valor de Id incorreto ou inexistente.");
+            throw new CategoriaException("\nValor de Id incorreto ou inexistente.");
         }
 
         return categoria;
@@ -37,7 +37,7 @@ public class CategoriaService {
         List<Categoria> categorias = categoriaDAO.findAll();
 
         if (categorias.size() <= 0) {
-            throw new CategoriaException("Não há Categorias a serem listadas.");
+            throw new CategoriaException("\nNão há Categorias a serem listadas.");
         }
 
         return categorias;
@@ -45,7 +45,7 @@ public class CategoriaService {
 
     public void update(Categoria categoria) {
         if (categoria.getNome() == null || categoria.getNome().isBlank()) {
-            throw new CategoriaException("Nome da Categoria deve estar preenchido.");
+            throw new CategoriaException("\nNome da Categoria deve estar preenchido.");
         }
 
         System.out.println("\nCategoria atualizada com sucesso.");
@@ -54,13 +54,13 @@ public class CategoriaService {
 
     public void delete(Long id) {
         if (id <= 0) {
-            throw new CategoriaException("Valor de Id inválido.");
+            throw new CategoriaException("\nValor de Id inválido.");
         }
 
         Categoria categoria = findById(id);
 
         if (categoria == null) {
-            throw new CategoriaException("Valor de Id incorreto ou inexistente.");
+            throw new CategoriaException("\nValor de Id incorreto ou inexistente.");
         }
 
         System.out.println("\nCategoria deletada com sucesso.");

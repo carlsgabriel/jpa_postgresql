@@ -12,27 +12,28 @@ public class ProdutoService {
 
     public void save(Produto produto) {
         if (produto.getNome() == null || produto.getNome().isBlank()) {
-            throw new ProdutoException("Nome da Categoria deve estar preenchido.");
+            throw new ProdutoException("\nNome da Categoria deve estar preenchido.");
         }
-        if (produto.getPreco() <= 0) {
-            throw new ProdutoException("Valor de produto inválido.");
+        if (produto.getPreco() < 0) {
+            throw new ProdutoException("\nValor de produto inválido.");
         }
         if (produto.getCategoria() == null) {
-            throw new ProdutoException("Categoria inexistente ou incorreta.");
+            throw new ProdutoException("\nCategoria inexistente ou incorreta.");
         }
 
+        System.out.println("\nProduto adicionado com sucesso.");
         produtoDAO.save(produto);
     }
 
     public Produto findById(Long id) {
         if (id <= 0) {
-            throw new ProdutoException("Valor de Id inválido.");
+            throw new ProdutoException("\nValor de Id inválido.");
         }
 
         Produto produto = produtoDAO.findById(id);
 
         if (produto == null) {
-            throw new ProdutoException("Valor de Id incorreto ou inexistente.");
+            throw new ProdutoException("\nValor de Id incorreto ou inexistente.");
         }
 
         return produto;
@@ -42,7 +43,7 @@ public class ProdutoService {
         List<Produto> produtos = produtoDAO.findAll();
 
         if (produtos.size() <= 0) {
-            throw new ProdutoException("Não há Produtos a serem listadas.");
+            throw new ProdutoException("\nNão há Produtos a serem listadas.");
         }
 
         return produtos;
@@ -50,23 +51,25 @@ public class ProdutoService {
 
     public void update(Produto produto) {
         if (produto.getNome() == null || produto.getNome().isBlank()) {
-            throw new ProdutoException("Nome da Categoria deve estar preenchido.");
+            throw new ProdutoException("\nNome da Categoria deve estar preenchido.");
         }
-        if (produto.getPreco() <= 0) {
-            throw new ProdutoException("Valor de produto inválido.");
+        if (produto.getPreco() < 0) {
+            throw new ProdutoException("\nValor de produto inválido.");
         }
         if (produto.getCategoria() == null) {
-            throw new ProdutoException("Categoria inexistente ou incorreta.");
+            throw new ProdutoException("\nCategoria inexistente ou incorreta.");
         }
 
+        System.out.println("\nProduto atualizado com sucesso.");
         produtoDAO.update(produto);
     }
 
     public void delete(Long id) {
         if (id <= 0) {
-            throw new ProdutoException("Valor de Id inválido.");
+            throw new ProdutoException("\nValor de Id inválido.");
         }
 
+        System.out.println("\nProduto deletado com sucesso.");
         produtoDAO.delete(id);
     }
 
