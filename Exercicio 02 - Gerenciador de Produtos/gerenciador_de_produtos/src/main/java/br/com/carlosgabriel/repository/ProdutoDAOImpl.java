@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.carlosgabriel.jpa.JPAUtil;
 import br.com.carlosgabriel.model.Produto;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 public class ProdutoDAOImpl implements ProdutoDAO{
     private EntityManager em;
@@ -43,6 +44,13 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         Produto produto = findById(id);
         em.remove(produto);
         em.getTransaction().commit();
+    }
+
+    public List<Produto> findByCategoryName(Long id){
+        String jpql = "SELECT p FROM Produto p WHERE p.categoria.id = :id";
+        TypedQuery<Produto> query = em.createQuery(jpql, Produto.class);
+        query.setParameter("id", id);
+        return query.getResultList();
     }
 
 }

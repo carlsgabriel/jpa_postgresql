@@ -73,4 +73,22 @@ public class ProdutoService {
         produtoDAO.delete(id);
     }
 
+    public List<Produto> findByCategoryName(Long id){
+        if(id == null || id <= 0){
+            throw new ProdutoException("\nNúmero de Id inválido.");
+        }
+
+        List<Produto> produtos = produtoDAO.findByCategoryName(id);
+
+        if(produtos == null || produtos.isEmpty()){
+            throw new ProdutoException("\nId inválido ou inexistente.");
+        }
+
+        if(produtos.size() == 0){
+            throw new ProdutoException("\nNão há produtos a serem listados para essa categoria.");
+        }
+
+        return produtos;
+    }
+
 }

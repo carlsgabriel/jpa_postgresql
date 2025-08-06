@@ -22,7 +22,8 @@ public class Menu {
             System.out.println("\nMENU");
             System.out.println("1. Menu Categoria");
             System.out.println("2. Menu Produto");
-            System.out.println("3. Finalizar programa");
+            System.out.println("3. Filtrar por Categoria");
+            System.out.println("4. Finalizar programa");
             System.out.print("Opção desejada: ");
             op = scan.nextInt();
             scan.nextLine();
@@ -35,6 +36,30 @@ public class Menu {
                     exibirMenuProduto();
                 }
                 case 3 -> {
+                    try{
+                        List<Categoria> categorias = categoriaService.findAll();
+                        for (Categoria categoria : categorias) {
+                            System.out.println("\nId: " + categoria.getId());
+                            System.out.println("Nome da Categoria: " + categoria.getNome());
+                        }
+
+                        System.out.print("\nInsira o Id da Categoria ao qual você quer filtrar os Produtos: ");
+                        Long id = scan.nextLong();
+                        scan.nextLine();
+
+                        List<Produto> produtos = produtoService.findByCategoryName(id);
+                        for(Produto produto : produtos){
+                            System.out.println("\nNome do Produto: " + produto.getNome());
+                            System.out.println("Preço: R$" + produto.getPreco());
+                        }
+                    }
+                    catch(ProdutoException e){
+                        System.out.println(e.getMessage());
+                    } 
+
+                    exibirMenu();
+                }
+                case 4 -> {
                     System.out.println("\nFinalizando programa...");
                     return;
 
