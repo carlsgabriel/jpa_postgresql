@@ -7,11 +7,11 @@ import jakarta.persistence.Persistence;
 public class JPAUtil {
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("agenda_de_contatos");
 
-    public EntityManager getEntityManager() {
+    public static EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public void close() {
+    public static void close() {
         emf.close();
     }
 }
