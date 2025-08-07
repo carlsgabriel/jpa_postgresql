@@ -61,6 +61,9 @@ public class Menu {
                         System.out.print("\nInsira o nome da Pessoa: ");
                         String nome = scan.nextLine();
 
+                        System.out.print("Insira o CPF da Pessoa: ");
+                        String cpf = scan.nextLine();
+
                         System.out.print("Data de nascimento [dia/mes/ano]: ");
                         LocalDate data_nascimento = LocalDate.parse(scan.nextLine(), dtf);
 
@@ -96,7 +99,7 @@ public class Menu {
                             genero = "";
                         }
 
-                        Pessoa pessoa = new Pessoa(nome, data_nascimento, altura, genero);
+                        Pessoa pessoa = new Pessoa(nome, cpf, data_nascimento, altura, genero);
 
                         pessoaService.save(pessoa);
                     } catch (PessoaException e) {

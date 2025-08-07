@@ -22,6 +22,9 @@ public class Pessoa {
     @Column(nullable = false)
     private String nome;
 
+    @Column(name = "CPF", nullable = false, unique = true, length = 11)
+    private String cpf;
+
     @Column(columnDefinition = "DATE")
     private LocalDate nascimento;
 
@@ -40,8 +43,9 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, LocalDate nascimento, Double altura, String genero) {
+    public Pessoa(String nome, String cpf, LocalDate nascimento, Double altura, String genero) {
         this.nome = nome;
+        this.cpf = cpf;
         this.nascimento = nascimento;
         this.altura = altura;
         this.genero = genero;
@@ -61,6 +65,14 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public LocalDate getNascimento() {

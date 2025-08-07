@@ -17,6 +17,18 @@ public class PessoaService {
             throw new PessoaException("\nNome da Pessoa deve ser preenchido.");
         }
 
+        if (pessoa.getCpf() == null || pessoa.getCpf().isBlank()) {
+            throw new PessoaException("\nCPF deve ser preenchido.");
+        }
+
+        if (pessoa.getCpf().length() != 11) {
+            throw new PessoaException("\nO CPF deve ter 11 digitos.");
+        }
+
+        if (pessoa.getNascimento().getYear() < 1920) {
+            throw new PessoaException("\nData inválida.");
+        }
+
         System.out.println("\nPessoa cadastrada com sucesso!");
         pessoaDAO.save(pessoa);
     }
@@ -49,8 +61,21 @@ public class PessoaService {
         if (pessoa == null) {
             throw new PessoaException("\nNão foi possível resgatar essa Pessoa do banco de dados.");
         }
+
         if (pessoa.getNome() == null || pessoa.getNome().isBlank()) {
             throw new PessoaException("\nNome da Pessoa deve ser preenchido.");
+        }
+
+        if (pessoa.getCpf() == null || pessoa.getCpf().isBlank()) {
+            throw new PessoaException("\nCPF deve ser preenchido.");
+        }
+
+        if (pessoa.getCpf().length() != 11) {
+            throw new PessoaException("\nO CPF deve ter 11 digitos.");
+        }
+
+        if (pessoa.getNascimento().getYear() < 1920) {
+            throw new PessoaException("\nData inválida.");
         }
 
         System.out.println("\nPessoa atualizada com sucesso!");
@@ -77,6 +102,7 @@ public class PessoaService {
 
         sb.append("\nId: " + pessoa.getId() + "\n");
         sb.append("Nome: " + pessoa.getNome() + "\n");
+        sb.append("CPF: " + pessoa.getCpf() + "\n");
         sb.append("Data de nascimento: " + dtf.format(pessoa.getNascimento()) + "\n");
         sb.append("Altura: " + pessoa.getAltura() + "\n");
         sb.append("Gênero: " + pessoa.getGenero());
@@ -93,6 +119,7 @@ public class PessoaService {
             for (Pessoa pessoa : pessoas) {
                 sb.append("\nId: " + pessoa.getId() + "\n");
                 sb.append("Nome: " + pessoa.getNome() + "\n");
+                sb.append("CPF: " + pessoa.getCpf() + "\n");
                 sb.append("Data de nascimento: " + dtf.format(pessoa.getNascimento()) + "\n");
                 sb.append("Altura: " + pessoa.getAltura() + "\n");
                 sb.append("Gênero: " + pessoa.getGenero() + "\n");
