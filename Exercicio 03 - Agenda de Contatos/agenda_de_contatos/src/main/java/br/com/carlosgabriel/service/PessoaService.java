@@ -152,18 +152,18 @@ public class PessoaService {
                 System.out.println("Gênero: " + pessoa.getGenero());
 
                 if (pessoa.getTelefones().size() == 0) {
-                    System.out.println("\nNão há Telefone(s) vinculado(s) a essa Pessoa.");
+                    System.out.println("\nNão há Telefone(s) vinculado(s) a \"" + pessoa.getNome() + "\".");
                 } else {
-                    System.out.println("\n[Telefone(s) vinculado(s) a essa Pessoa]");
+                    System.out.println("\n[Telefone(s) vinculado(s) a \"" + pessoa.getNome() + "\"]");
                     for (int i = 0; i < pessoa.getTelefones().size(); i++) {
                         System.out.println((i + 1) + "º - Numero: " + pessoa.getTelefones().get(i).getNumero());
                     }
                 }
 
                 if (pessoa.getEmails().size() == 0) {
-                    System.out.println("\nNão há Email(s) vinculado(s) a essa Pessoa.");
+                    System.out.println("\nNão há Email(s) vinculado(s) a \"" + pessoa.getNome() + "\".\n");
                 } else {
-                    System.out.println("\n[Email(s) vinculado(s) a essa Pessoa]");
+                    System.out.println("\n[Email(s) vinculado(s) a \"" + pessoa.getNome() + "\"]");
                     for (int i = 0; i < pessoa.getEmails().size(); i++) {
                         System.out.println((i + 1) + "º - Email: " + pessoa.getEmails().get(i).getEmail());
                     }
