@@ -32,7 +32,8 @@ public class Menu {
             System.out.println("1. Menu Pessoa");
             System.out.println("2. Menu Telefone");
             System.out.println("3. Menu Email");
-            System.out.println("4. Sair do Programa");
+            System.out.println("4. Exibir dados da Agenda");
+            System.out.println("5. Sair do Programa");
             System.out.print("Opção desejada: ");
             op = scan.nextInt();
             scan.nextLine();
@@ -41,7 +42,8 @@ public class Menu {
                 case 1 -> exibirMenuPessoa();
                 case 2 -> exibirMenuTelefone();
                 case 3 -> exibirMenuEmail();
-                case 4 -> {
+                case 4 -> exibirAgenda();
+                case 5 -> {
                     System.out.println("\nSaindo do Programa...");
                     return;
                 }
@@ -463,6 +465,12 @@ public class Menu {
                 default -> System.out.println("\nValor inválido.");
             }
         }
+    }
+
+    public void exibirAgenda() {
+        pessoaService.exibirAgenda();
+
+        exibirMenu();
     }
 
 }

@@ -29,7 +29,7 @@ public class PessoaService {
             throw new PessoaException("\nData inválida.");
         }
 
-        if(pessoa.getAltura() <= 0 || pessoa.getAltura() > 2.50){
+        if (pessoa.getAltura() <= 0 || pessoa.getAltura() > 2.50) {
             throw new PessoaException("Altura inválida.");
         }
 
@@ -82,7 +82,7 @@ public class PessoaService {
             throw new PessoaException("\nData inválida.");
         }
 
-        if(pessoa.getAltura() <= 0 || pessoa.getAltura() > 2.50){
+        if (pessoa.getAltura() <= 0 || pessoa.getAltura() > 2.50) {
             throw new PessoaException("Altura inválida.");
         }
 
@@ -135,6 +135,44 @@ public class PessoaService {
         }
 
         return sb.toString();
+    }
+
+    public void exibirAgenda() {
+        List<Pessoa> pessoas = pessoaDAO.findAll();
+
+        if (pessoas.size() <= 0) {
+            throw new PessoaException("Não há Pessoas a serem listadas.");
+        } else {
+            for (Pessoa pessoa : pessoas) {
+                System.out.println("\n[Pessoa]");
+                System.out.println("Nome: " + pessoa.getNome());
+                System.out.println("CPF: " + pessoa.getCpf());
+                System.out.println("Data de nascimento: " + dtf.format(pessoa.getNascimento()));
+                System.out.println("Altura: " + pessoa.getAltura());
+                System.out.println("Gênero: " + pessoa.getGenero());
+
+                if (pessoa.getTelefones().size() == 0) {
+                    System.out.println("\nNão há Telefone(s) vinculado(s) a essa Pessoa.");
+                } else {
+                    System.out.println("\n[Telefone(s) vinculado(s) a essa Pessoa]");
+                    for (int i = 0; i < pessoa.getTelefones().size(); i++) {
+                        System.out.println((i + 1) + "º - Numero: " + pessoa.getTelefones().get(i).getNumero());
+                    }
+                }
+
+                if (pessoa.getEmails().size() == 0) {
+                    System.out.println("\nNão há Email(s) vinculado(s) a essa Pessoa.");
+                } else {
+                    System.out.println("\n[Email(s) vinculado(s) a essa Pessoa]");
+                    for (int i = 0; i < pessoa.getEmails().size(); i++) {
+                        System.out.println((i + 1) + "º - Email: " + pessoa.getEmails().get(i).getEmail());
+                    }
+                }
+
+                System.out.println("\n-----------------------------");
+            }
+        }
+
     }
 
 }
