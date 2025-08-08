@@ -21,7 +21,7 @@ public class Email {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    Pessoa pessoa;
+    private Pessoa pessoa;
 
     public Email() {
     }

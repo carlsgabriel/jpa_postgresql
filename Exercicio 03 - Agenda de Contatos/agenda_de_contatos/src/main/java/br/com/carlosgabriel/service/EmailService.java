@@ -21,13 +21,13 @@ public class EmailService {
 
     public Email findById(long id) {
         if (id <= 0) {
-            throw new EmailException("Valor de Id inválido.");
+            throw new EmailException("\nValor de Id inválido.");
         }
 
         Email email = emailDAO.findById(id);
 
         if (email == null) {
-            throw new EmailException("Valor de Id incorreto ou inexistente.");
+            throw new EmailException("\nValor de Id incorreto ou inexistente.");
         }
 
         return email;
@@ -37,7 +37,7 @@ public class EmailService {
         List<Email> emails = emailDAO.findAll();
 
         if (emails.size() <= 0) {
-            throw new EmailException("Não há Emails a serem listados.");
+            throw new EmailException("\nNão há Emails a serem listados.");
         }
 
         return emails;
@@ -45,29 +45,56 @@ public class EmailService {
 
     public void update(Email email) {
         if (email == null) {
-            throw new EmailException("Não foi possível resgatar esse Email do banco de dados.");
+            throw new EmailException("\nNão foi possível resgatar esse Email do banco de dados.");
         }
         if (email.getEmail() == null || email.getEmail().isBlank()) {
-            throw new EmailException("O Email precisa ser preenchido.");
+            throw new EmailException("\nO Email precisa ser preenchido.");
         }
 
-        System.out.println("Email atualizado com sucesso!");
+        System.out.println("\nEmail atualizado com sucesso!");
         emailDAO.update(email);
     }
 
     public void delete(long id) {
         if (id <= 0) {
-            throw new EmailException("Valor de Id inválido.");
+            throw new EmailException("\nValor de Id inválido.");
         }
 
         Email email = emailDAO.findById(id);
 
         if (email == null) {
-            throw new EmailException("Valor de Id incorreto ou inexistente.");
+            throw new EmailException("\nValor de Id incorreto ou inexistente.");
         }
 
-        System.out.println("Email deletado com sucesso!");
+        System.out.println("\nEmail deletado com sucesso!");
         emailDAO.delete(id);
+    }
+
+    public String mostrarEmail(Email email) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\nId: " + email.getId() + "\n");
+        sb.append("Email: " + email.getEmail() + "\n");
+        sb.append("Pessoa vinculada: " + email.getPessoa().getNome() + " - CPF: " + email.getPessoa().getCpf() + "\n");
+
+        return sb.toString();
+    }
+
+    public String mostrarTodosEmails(List<Email> emails) {
+        StringBuilder sb = new StringBuilder();
+        
+        if (emails.size() <= 0) {
+            sb.append("Não há Emails a serem verificados.");
+        } else {
+            sb.append("Emails: \n");
+            for (Email email : emails) {
+                sb.append("\nId: " + email.getId() + "\n");
+                sb.append("Numero: " + email.getEmail() + "\n");
+                sb.append("Pessoa vinculada: " + email.getPessoa().getNome() + " - CPF: " + email.getPessoa().getCpf() + "\n");
+            }
+        }
+
+        return sb.toString();
     }
 
 }

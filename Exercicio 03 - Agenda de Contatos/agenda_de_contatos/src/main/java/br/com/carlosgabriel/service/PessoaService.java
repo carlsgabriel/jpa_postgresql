@@ -29,6 +29,10 @@ public class PessoaService {
             throw new PessoaException("\nData inválida.");
         }
 
+        if(pessoa.getAltura() <= 0 || pessoa.getAltura() > 2.50){
+            throw new PessoaException("Altura inválida.");
+        }
+
         System.out.println("\nPessoa cadastrada com sucesso!");
         pessoaDAO.save(pessoa);
     }
@@ -76,6 +80,10 @@ public class PessoaService {
 
         if (pessoa.getNascimento().getYear() < 1920) {
             throw new PessoaException("\nData inválida.");
+        }
+
+        if(pessoa.getAltura() <= 0 || pessoa.getAltura() > 2.50){
+            throw new PessoaException("Altura inválida.");
         }
 
         System.out.println("\nPessoa atualizada com sucesso!");
